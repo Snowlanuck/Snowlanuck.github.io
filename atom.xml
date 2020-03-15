@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://snowlanuck.github.io/</id>
-    <title>Gridea</title>
-    <updated>2020-03-15T13:39:28.825Z</updated>
+    <title>Snowlanuck Blog</title>
+    <updated>2020-03-15T14:15:08.395Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://snowlanuck.github.io/"/>
     <link rel="self" href="https://snowlanuck.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://snowlanuck.github.io/images/avatar.png</logo>
     <icon>https://snowlanuck.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, Snowlanuck Blog</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://snowlanuck.github.io/post/hello-gridea/</id>
