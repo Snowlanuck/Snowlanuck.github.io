@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://snowlanuck.github.io/</id>
     <title>Snowlanuck Blog</title>
-    <updated>2020-05-04T08:59:17.287Z</updated>
+    <updated>2020-05-04T09:37:33.567Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://snowlanuck.github.io/"/>
     <link rel="self" href="https://snowlanuck.github.io/atom.xml"/>
@@ -10,4 +10,43 @@
     <logo>https://snowlanuck.github.io/images/avatar.png</logo>
     <icon>https://snowlanuck.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Snowlanuck Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[技术生涯]]></title>
+        <id>https://snowlanuck.github.io/post/ji-zhu-sheng-ya/</id>
+        <link href="https://snowlanuck.github.io/post/ji-zhu-sheng-ya/">
+        </link>
+        <updated>2020-05-04T09:18:13.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/user/87259">洛谷</a> <a href="https://www.acwing.com/user/myspace/index/32737/">AcWing</a> <a href="https://leetcode-cn.com/u/snowlanuck/">LeetCode</a></p>
+<h1 id="算法数据结构">算法&amp;数据结构</h1>
+<p><s>紫书(算法竞赛入门经典  第2版)</s> 粗略的一刷, 40%+的题 (动规+数论+12章 略过) 2020/04/06</p>
+<p>AcWing 算法基础课</p>
+<p>AcWing 算法提高课</p>
+<p>洛谷官方题单</p>
+<p>AcWing 《算法竞赛进阶指南》打卡活动 (刷题)</p>
+<p>算法竞赛入门经典训练指南</p>
+<p>紫书二刷</p>
+<p>[骗分导论]</p>
+<p>[信息学奥赛之数学一本通]</p>
+<p>算法导论</p>
+<h1 id="程序设计">程序设计</h1>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2020年]]></title>
+        <id>https://snowlanuck.github.io/post/2020-nian/</id>
+        <link href="https://snowlanuck.github.io/post/2020-nian/">
+        </link>
+        <updated>2020-05-04T09:02:18.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="年初~现在20200504">年初~现在（2020/05/04）</h2>
+<p>经过了大学军训，终于开始放假了，但我怎么也不会想到，这个“假期”会这么长，从二月份开始陆续出现了关于新型冠状病毒的新闻，随即开始封锁管控，学校也因此上网课，在这个期间我都在刷紫书😭</p>
+<p>由于我平时就很宅，所以这次的疫情对我来说影响不大，但影响还是有的。</p>
+<p>关于网课，由于没有的实地的监控，我也变得非常懒惰（而且课上的内容我多少都有接触过），这就导致我把几乎所有的课都翘了（打卡挂机继续睡），虽然知识都是接触过的，但也因为太久没用而忘却，恐怕临考前我得通宵复习了😪。我把更多的时间都投入到了算法学习当中，也踩了很多坑，不过都过来了，我的水平相对于放假前还是有很大的提升的，不过还是很多题都没法做出来。</p>
+<p>紫书（算法竞赛入门经典 第2版）不是很适合初学者，适合对算法有了解且知道大体框架的选手，而我，作为一个初学者就直接上手该书，不仅学的很吃力，而且收获也不是很大（很多的基础内容都跳过了，导致遇到问题无法联想到模型），紫书的风格是讲一下基础，然后就立马给你出省选难度的题，真是压力山大😰</p>
+<p>粗略的把紫书过一遍之后，我就开始尝试打打比赛，但排名都不怎么好<br>
+<img src="https://snowlanuck.github.io//post-images/1588584592152.png" alt="" loading="lazy"></p>
+<p>学校也鼓励学生参加近期举办的比赛，我也去参加了，先通过网络赛的选拔才能进现场决赛<br>
+不过这个网络赛有点丧心病狂，12小时（早八点~晚八点）做20道题，然后根据ACM赛制进行排名。<br>
+我参加了并取得名次 321/2265，20道题我也只能做出10道题，还有几题有希望做出来但答案错了，只能说我自身的水平不达标，有待磨练。去掉0题选手+去重后的排名 269/942 ，应该离决赛无望了..</p>
+]]></content>
+    </entry>
 </feed>
