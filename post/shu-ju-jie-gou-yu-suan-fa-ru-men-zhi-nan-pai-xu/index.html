@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+     <meta charset="utf-8" />
+  <title>数据结构与算法入门指南 - 排序 | Snowlanuck Blog</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <link rel="stylesheet" href="https://snowlanuck.github.io//styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+   <script src="https://cdn.staticfile.org/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+ </head>
+ <body>
+     <div class="sidebar animated fadeInDown">
+   <div class="logo-title">
+    <div class="title">
+     <img src="https://snowlanuck.github.io//images/avatar.png?v=1607325788546" style="width:127px;" />
+
+     <h3 title=""><a href="/">Snowlanuck</a></h3>
+
+     <div class="description">
+      <p>Aw.16982</p>
+     </div>
+    </div>
+   </div>
+   <ul class="social-links">
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+   </ul>
+   <div class="footer">
+    <div class="by_farbox">
+   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    
+
+    </div>
+   </div>
+  </div>
+  <div class="main">
+     <div class="page-top animated fadeInDown">
+    <div class="nav">
+    
+     <li><a  href="/">首页</a></li>
+
+     <li><a  href="/archives">归档</a></li>
+
+     <li><a  href="/tags">标签</a></li>
+
+     <li><a  href="/post/about">关于</a></li>
+
+     <li><a  href="/post/links">友链</a></li>
+
+     <li><a  href="/post/zhuan-lan">专栏</a></li>
+
+    </div>
+    <div class="information">
+     <div class="back_btn">
+      <li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li>
+     </div>
+    </div>
+   </div>
+   <div class="autopagerize_page_element">
+    <div class="content">
+     <div class="post-page">
+      <div class="post animated fadeInDown">
+       <div class="post-title">
+        <h3><a>数据结构与算法入门指南 - 排序</a></h3>
+       </div>
+       <div class="post-content">
+        <blockquote>
+<p>了解各个排序的算法原理比较适合找工作面试的时候用，在刷题竞赛的时候直接使用sort函数即可</p>
+</blockquote>
+<h2 id="sort函数">sort函数</h2>
+<p>sort作为C++自带的函数，使用频率比较高，一般遇到需要排序的数组用就行了，能解决大部分需要排序的问题。下面演示一下各种用法。</p>
+<h3 id="基础用法">基础用法</h3>
+<p>最基础的用法，对数组直接排序（默认从小到大排序）。</p>
+<pre><code class="language-cpp">int A[10] = { 5,4,8,7,6,4,1,6,5,1 };
+sort(A, A + 10); // A = { 1,1,4,4,5,5,6,6,7,8 }
+</code></pre>
+<p>sort函数的前两个参数为首地址与尾地址，表示需要排序一段数组。在上例中，A有10个元素，而使用A时会返回A的首地址，A + 10表示在首地址上向后偏移10个位置后的地址，用(A，A + 10)可以表示A[0 ~ 9]。</p>
+<p>如果只想对前五位排序，也可以这样写<code>sort(A, A + 5)</code>。</p>
+<p>对于STL中的vector也是如此，使用对象中的<code>begin()</code>与<code>end()</code>获取首地址与尾地址。</p>
+<pre><code class="language-cpp">vector&lt;int&gt; A = { 5,4,6,8,7,4,1,6,9 };
+sort(A.begin(), A.end()); // A = { 1,4,4,5,6,6,7,8,9 }
+</code></pre>
+<p>那么对于自定义的结构体呢？看下面。</p>
+<h3 id="自定义排序用法">自定义排序用法</h3>
+<p>sort函数还有第三个可选参数，就是自定义排序的方法，传入方法名或者匿名函数即可。传入的方法的参数必须是两个同类型的且返回值为bool类型。</p>
+<p>如果不使用第三个参数，sort函数会默认调用对象的<code>&lt;</code>方法来比较两个对象的大小关系，使用结构体时需要重写一下<code>operator&lt;</code>。</p>
+<ul>
+<li>
+<p>使用匿名函数</p>
+<pre><code class="language-cpp">int A[10] = { 5,1,7,9,5,4,8,3,1,0 };
+sort(A, A + 10, [](int a, int b) { return a &gt; b; }); //从大到小排序
+//A = { 9,8,7,5,5,4,3,1,1,0 }
+</code></pre>
+</li>
+<li>
+<p>使用方法</p>
+<pre><code class="language-cpp">//从大到小排序
+bool cmp(int a, int b) { return a &gt; b; }
+
+int main()
+{
+	int A[10] = { 5,1,7,9,5,4,8,3,1,0 };
+	sort(A, A + 10, cmp); //A = { 9,8,7,5,5,4,3,1,1,0 }
+	return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>结构体重载<code>operator&lt;</code></p>
+<pre><code class="language-cpp">struct Node 
+{
+	int a, b;
+	//按a对Node从小到大排序（与传入的Node比较）
+	bool operator&lt;(Node u) const
+	{
+		return a &lt; u.a;
+	}
+};
+
+int main()
+{
+	Node A[3] =  { {1, 6}, {8, 0}, {4, 5} };
+	sort(A, A + 3); // A =  { {1, 6}, {4, 5}, {8, 0} };
+
+	return 0;
+}
+</code></pre>
+<p>当然，也可以选择不重载<code>operator&lt;</code>，直接传匿名函数或者方法。</p>
+</li>
+</ul>
+<h3 id="lesst与greatert"><code>less&lt;T&gt;()</code>与<code>greater&lt;T&gt;()</code></h3>
+<p>如果只是想让元素 从小到大 或者 从大到小 排序，那么大可不必自己手写一个方法实现，直接使用系统内置的<code>less&lt;T&gt;()</code>与<code>greater&lt;T&gt;()</code>即可，T为元素类型。</p>
+<pre><code class="language-cpp">sort(A, A + 10, less&lt;int&gt;()); //从小到大排序
+sort(A, A + 10, greater&lt;int&gt;()); //从大到小排序
+</code></pre>
+<ul>
+<li><code>less&lt;T&gt;()</code>需要类重载<code>operator&lt;()</code></li>
+<li><code>greater&lt;T&gt;()</code>需要类重载<code>operator&gt;()</code></li>
+</ul>
+<hr>
+<blockquote>
+<p>快速排序与归并排序都用了递归实现，如果你对递归并不是很熟练，可以大概了解后暂时跳过，以后再回来看看。</p>
+</blockquote>
+<h2 id="quicksort-快速排序">QuickSort 快速排序</h2>
+<p>快速排序先会随机找一个基准点，把小于基准点的数放到左边，把大于基准点的数放到右边，再将区间划分为两半递归执行，一直如此划分下去，就达到了排序的目的。</p>
+<p>具体的排序方法：确定基准点后，双指针从数组两端向中间移动，左边指针先找到大于基准点的，然后右指针移动到小于基准点的，交换两个指针的数值即可。</p>
+<p>引用一下《啊哈！算法》这本书中的快速排序流程图，将双指针看成两个哨兵。（以左端点6为基准点，右指针先出发）</p>
+<figure data-type="image" tabindex="1"><img src="https://snowlanuck.github.io//post-images/1607325632798.jpg" alt="" loading="lazy"></figure>
+<center>左右指针找到符合条件的值，交换！</center>
+<figure data-type="image" tabindex="2"><img src="https://snowlanuck.github.io//post-images/1607325639528.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://snowlanuck.github.io//post-images/1607325645170.jpg" alt="" loading="lazy"></figure>
+<center>交换完之后继续查找，找到后继续交换，直到两个哨兵（双指针）相遇为止。</center>
+<figure data-type="image" tabindex="4"><img src="https://snowlanuck.github.io//post-images/1607325656855.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://snowlanuck.github.io//post-images/1607325671578.jpg" alt="" loading="lazy"></figure>
+<center>两个哨兵相遇后，我们要把基准值放到相遇的位置，也就是中间，毕竟左边都是比基准值小的，右边都是比基准值大的数嘛。</center>
+<figure data-type="image" tabindex="6"><img src="https://snowlanuck.github.io//post-images/1607325679949.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://snowlanuck.github.io//post-images/1607325688374.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://snowlanuck.github.io//post-images/1607325694294.jpg" alt="" loading="lazy"></figure>
+<center>到此第一轮排序完毕，但我们发现整个数组其实并没有完全排好序，接下来需要将其不断分成左右两个区间重复上述过程最后就能将整个数组排序完毕了。</center>
+<figure data-type="image" tabindex="9"><img src="https://snowlanuck.github.io//post-images/1607325703153.jpg" alt="" loading="lazy"></figure>
+<p>下面我们来写写代码吧，上模板题！（代码实现与上述过程有所差异，不过原理大致相同）</p>
+<p><a href="https://www.luogu.com.cn/problem/P1177">P1177 【模板】快速排序</a> （注意：该题如果随机选取的数为最左边的数，即x = A[L]，则会超时）</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+const int maxn = 100000 + 10;
+int n, A[maxn];
+
+void quick_sort(int l, int r)
+{
+    if (l &gt;= r) return; //不能再划分区间了，终止
+    
+    //x为随机选取的值，i为起点，j为终点。
+    int x = A[(l + r) / 2], i = l - 1, j = r + 1;
+    while (i &lt; j)
+    {
+        while (A[++i] &lt; x); //找出左边大于x的值 (当A[j] &gt; x 时循环停止 即目前A[j] &gt; x
+        while (A[--j] &gt; x); //同理找出右边小于x的值
+        if (i &lt; j) swap(A[i], A[j]); //如果符合要求则交换
+    }
+    quick_sort(l, j); //继续划分左边
+    quick_sort(j + 1, r); //划分右边
+}
+
+int main()
+{
+    cin &gt;&gt; n;
+    for (int i = 0; i &lt; n; i++)
+        cin &gt;&gt; A[i];
+
+    quick_sort(0, n - 1);
+
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; A[i] &lt;&lt; ' ';
+
+    return 0;
+}
+</code></pre>
+<h2 id="mergesort-归并排序">MergeSort 归并排序</h2>
+<p>归并排序与快速排序最大的不同就是 快速排序是先排序再划分，而归并排序是先划分再排序，其中间过程可以理解为合并两个有序数组（这一步需要开额外空间实现）。</p>
+<p>合并两个有序数组的方法：比较两个数组开头的数，谁小就选谁，最后如果有数组不为空，则一次性全部选取即可。具体题目：<a href="https://leetcode-cn.com/problems/merge-sorted-array/"><strong>88. 合并两个有序数组</strong></a></p>
+<p>我们没有对数组排过序，又怎么会得到有序数组让我们合并呢，其实划分最终会划分到每个元素上，对于单个元素而言不需要在意顺序了。</p>
+<p>依旧可以使用上面的题目来练手归并排序<a href="https://www.luogu.com.cn/problem/P1177"> P1177 【模板】快速排序</a></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+const int maxn = 100000 + 10;
+int n, A[maxn], B[maxn];
+
+void merge_sort(int l, int r)
+{
+    if (l &gt;= r) return;
+
+    int mid = (l + r) / 2; //找出中点
+    merge_sort(l, mid); merge_sort(mid + 1, r); //划分两边
+    //合并两个有序数组（当划分到只有一个元素的时候也是有序的）
+    int k = l, i = l, j = mid + 1;
+    while (i &lt;= mid &amp;&amp; j &lt;= r)
+        if (A[i] &lt;= A[j]) B[k++] = A[i++];
+        else B[k++] = A[j++];
+    //两个数组合并完毕，只要数组中有元素就放进去（只要一组有，可以保证另一组为空，所以不用做判断）
+    while (i &lt;= mid) B[k++] = A[i++];
+    while (j &lt;= r) B[k++] = A[j++];
+
+    for (i = l; i &lt;= r; i++) A[i] = B[i]; //将排序好的数组覆盖放入原数组中
+}
+
+int main()
+{
+    cin &gt;&gt; n;
+    for (int i = 0; i &lt; n; i++)
+        cin &gt;&gt; A[i];
+
+    merge_sort(0, n - 1);
+
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; A[i] &lt;&lt; ' ';
+
+    return 0;
+}
+</code></pre>
+<h2 id="关于其他排序算法">关于其他排序算法</h2>
+<p>大部分算法的时间复杂度与空间复杂度都没有快速排序与归并排序好，所以这里就不一一细说了，列举一下其他常见的排序算法，有兴趣可以自己了解了解。</p>
+<ul>
+<li>冒泡排序</li>
+<li>插入排序</li>
+<li>希尔排序</li>
+<li>选择排序</li>
+<li>桶排序</li>
+<li>计数排序</li>
+<li>基数排序</li>
+<li>...</li>
+</ul>
+<h2 id="题目">题目</h2>
+<p>题目列表待增加，洛谷的官方题单是个不错的选择。</p>
+<p><a href="https://www.luogu.com.cn/training/107">【算法1-2】排序 - 题单 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
+
+       </div>
+       <div class="post-footer">
+        <div class="meta">
+         <div class="info">
+          <i class="fa fa-sun-o"></i>
+          <span class="date">2020-12-07</span>
+          <i class="fa fa-tag"></i>
+          
+          <a class="tag" href="https://snowlanuck.github.io/tag/wkl6Jhh7j/" title="数据结构与算法入门指南">数据结构与算法入门指南 </a>
+          
+          <a class="tag" href="https://snowlanuck.github.io/tag/QCO7UePZd/" title="数据结构与算法">数据结构与算法 </a>
+          
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="share">
+       <div class="evernote">
+        <a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a>
+       </div>
+       <div class="weibo">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a>
+       </div>
+       <div class="twitter">
+        <a class="fa fa-twitter" href="http://twitter.com/home?status=,https://snowlanuck.github.io/post/shu-ju-jie-gou-yu-suan-fa-ru-men-zhi-nan-pai-xu/,;"></a>
+       </div>
+      </div>
+      <div class="pagination">
+       <ul class="clearfix">
+
+        <li class="pre pagbuttons"><a class="btn" role="navigation" href="https://snowlanuck.github.io/post/shu-ju-jie-gou-yu-suan-fa-ru-men-zhi-nan-guan-yu/" title="数据结构与算法入门指南 - 关于">上一篇</a></li>
+         
+        
+        <li class="next pagbuttons"><a class="btn" role="navigation" href="https://snowlanuck.github.io/post/ji-zhu-sheng-ya/" title=" 技术生涯">下一篇</a></li>
+        
+       </ul>
+      </div>
+        
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="https://snowlanuck.github.io//media/scripts/jquery.js"></script>
+  <script src="https://snowlanuck.github.io//media/scripts/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://snowlanuck.github.io//media/scripts/jquery.appear.js"></script>
+
+
+ </body>
+</html>
