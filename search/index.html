@@ -1,10 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>技术生涯 | Snowlanuck&#39;s Blog</title>
+<title>搜索 | Snowlanuck&#39;s Blog</title>
 
 <link rel="shortcut icon" href="https://snowlanuck.github.io//favicon.ico?v=1607932439185">
 
@@ -33,11 +35,21 @@
 <!--<script src="media/scripts/index.js"></script>-->
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.0/dist/fuse.basic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.3/ejs.min.js"></script>
+    <script src="https://snowlanuck.github.io//media/gridea-search/gridea-search.js"></script>
+    <script src="https://snowlanuck.github.io//media/gridea-search/result-template.ejs" type="text/ejs"></script>
 </head>
+
 <body>
-<div class="main gt-bg-theme-color-first">
     <style>
+        .searched-keyword {
+            background-color: yellow;
+            color: red;
+        }
+    </style>
+    <div class="main gt-bg-theme-color-first">
+        <style>
     /* 导航栏样式 */
     .navbar {
         position: relative;
@@ -214,46 +226,16 @@
         }
     }
 </script>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    技术生涯
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-05-04 ·
-                    </time>
-                    
-                </div>
-                <div class="post-content">
-                    <p><a href="https://www.luogu.com.cn/user/87259">洛谷</a> <a href="https://www.acwing.com/user/myspace/index/32737/">AcWing</a> <a href="https://leetcode-cn.com/u/snowlanuck/">LeetCode</a></p>
-<h1 id="算法数据结构">算法&amp;数据结构</h1>
-<p><a href="https://oi.docs.snowlanuck.ink/">学习笔记</a></p>
-<p><s>紫书(算法竞赛入门经典  第2版)</s> 粗略的一刷, 40%+的题 (动规+数论+12章 略过) 2020/04/06</p>
-<p><s>AcWing 算法基础课</s> （一刷 2020/05/14 二刷复习 2020/05/16</p>
-<p>AcWing 算法提高课</p>
-<p>洛谷官方题单</p>
-<p>AcWing 《算法竞赛进阶指南》打卡活动 (刷题)</p>
-<p>算法竞赛入门经典训练指南</p>
-<p>紫书二刷</p>
-<p>[骗分导论]</p>
-<p>[信息学奥赛之数学一本通]</p>
-<p>算法导论</p>
-<h1 id="程序设计">程序设计</h1>
-
-                </div>
-            </article>
+        <div id="gridea-search-result" data-update="1607932439185">
+            <div class="searching" style="font-size: 18px; margin-top: 50px;">
+                <i class="fa fa-sync-alt fa-spin"></i>&nbsp;&nbsp;搜索中......
+                <br><br>
+                <span style="font-size: 65%; color: #aaa">第一次搜索可能需要耗费较长时间构建索引，请耐心等待...</span>
+            </div>
+            <div class="no-result" style="display:none; font-size: 20px; margin-top: 50px;">
+                <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;未搜索到相关文章，请更换关键词
+            </div>
         </div>
-
-        
-
-        
-
-        
-
-        
-
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">Aw.16982</div>
     <div class="social-container">
@@ -285,6 +267,6 @@
 </script>
 
     </div>
-</div>
 </body>
+
 </html>
