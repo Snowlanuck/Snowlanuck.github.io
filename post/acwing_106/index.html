@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Snowlanuck&#39;s Blog</title>
+<title>AcWing_106动态中位数 | Snowlanuck&#39;s Blog</title>
 
 <link rel="shortcut icon" href="https://snowlanuck.github.io//favicon.ico?v=1610025090776">
 
@@ -33,11 +33,11 @@
 <!--<script src="media/scripts/index.js"></script>-->
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <style>
+    <style>
     /* 导航栏样式 */
     .navbar {
         position: relative;
@@ -214,64 +214,121 @@
         }
     }
 </script>
-
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://snowlanuck.github.io/post/ccf-csp/">
-                            <span class="post-title gt-c-content-color-first">CCF CSP 题解</span>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    AcWing_106动态中位数
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-01-07 ·
+                    </time>
+                    
+                        <a href="https://snowlanuck.github.io/tag/0kmjJoU_p/" class="post-tags">
+                            # 算法
                         </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-12-24 ·
-                        </time>
-                        
-                            <a href="https://snowlanuck.github.io/tag/0kmjJoU_p/" class="post-tag">
-                                # 算法
-                            </a>
-                        
-                    </div>
+                    
                 </div>
-                
-            </div>
+                <div class="post-content">
+                    <p>题目地址：<a href="https://www.acwing.com/problem/content/108/">106. 动态中位数 - AcWing题库</a></p>
+<h2 id="题目描述">题目描述</h2>
+<p>依次读入一个整数序列，每当已经读入的整数个数为奇数时，输出已读入的整数构成的序列的中位数。</p>
+<h4 id="输入格式">输入格式</h4>
+<p>第一行输入一个整数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span>，代表后面数据集的个数，接下来若干行输入各个数据集。<br>
+每个数据集的第一行首先输入一个代表数据集的编号的整数。<br>
+然后输入一个整数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span>，代表数据集中包含数据的个数，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span>一定为奇数，数据之间用空格隔开。<br>
+数据集的剩余行由数据集的数据构成，每行包含10个数据，最后一行数据量可能少于10个，数据之间用空格隔开。</p>
+<h4 id="输出格式">输出格式</h4>
+<p>对于每个数据集，第一行输出两个整数，分别代表数据集的编号以及输出中位数的个数（应为数据个数加一的二分之一），数据之间用空格隔开。<br>
+数据集的剩余行由输出的中位数构成，每行包含10个数据，最后一行数据量可能少于10个，数据之间用空格隔开。<br>
+输出中不应该存在空行。</p>
+<h4 id="数据范围">数据范围</h4>
+<p>$ 1 ≤ P ≤ 1000 $,</p>
+<p>$ 1 ≤ M ≤ 9999 $</p>
+<h4 id="输入样例">输入样例：</h4>
+<pre><code>3 
+1 9 
+1 2 3 4 5 6 7 8 9 
+2 9 
+9 8 7 6 5 4 3 2 1 
+3 23 
+23 41 13 22 -3 24 -31 -11 -8 -7 
+3 5 103 211 -311 -45 -67 -73 -81 -99 
+-33 24 56
+</code></pre>
+<h4 id="输出样例">输出样例：</h4>
+<pre><code>1 5
+1 2 3 4 5
+2 5
+9 8 7 6 5
+3 12
+23 23 22 22 13 3 5 5 3 -3 
+-7 -3
+</code></pre>
+<h3 id="题解">题解</h3>
+<p>题目的大概意思是说，每读入一个数且当前读入的次数是奇数时，求整个数组的中位数是多少。</p>
+<p>看个题目的样例：</p>
+<p><code>1 2 3 4 5 6 7 8 9</code></p>
+<p>第一次读入1 时，中位数就是1 （数组：{ 1 }）</p>
+<p>第二次读入2时，不管</p>
+<p>第三次读入3时，中位数就是2 （数组：{1，2，3}）</p>
+<p>第四次读入4时，不管</p>
+<p>第五次读入5时，中位数就是3（数组：{1，2，3，4，5}）</p>
+<p>...</p>
+<p>从题目给出的数据范围和时限来看，我们需要用差不多O(1)的时间实现才行。</p>
+<p>那么有什么方法可以实现快速求中位数这个操作呢？</p>
+<p>答案是对顶堆。</p>
+<p>对顶堆由一个大根堆和一个小根堆实现，维护另大根堆永远比小根堆多一个元素，那么大根堆的堆顶就是中位数，具体原理和代码见下。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Snowlanuck/PicRepo/master/blog/20210107205058.png" alt="" loading="lazy"></figure>
+<p>代码：</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main()
+{
+    int T, n, m; cin &gt;&gt; T;
+    while (T -- &amp;&amp; cin &gt;&gt; m &gt;&gt; n)
+    {
+        printf(&quot;%d %d\n&quot;, m, (n + 1) / 2);
+        priority_queue&lt;int&gt; down;
+        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; up;
         
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://snowlanuck.github.io/post/ji-zhu-sheng-ya/">
-                            <span class="post-title gt-c-content-color-first">技术生涯</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-05-04 ·
-                        </time>
-                        
-                    </div>
+        int cnt = 0;
+        for (int i = 1, x; i &lt;= n; i ++)
+        {
+            scanf(&quot;%d&quot;, &amp;x);
+            if (down.empty() || x &lt;= down.top()) down.push(x);
+            else up.push(x);
+            
+            if (down.size() &gt; up.size() + 1) up.push(down.top()), down.pop();
+            if (up.size() &gt; down.size()) down.push(up.top()), up.pop();
+            
+            if (i % 2) 
+            {
+                printf(&quot;%d &quot;, down.top());
+                if (++ cnt % 10 == 0) puts(&quot;&quot;);
+            }
+        }
+        
+        if (cnt % 10) puts(&quot;&quot;);
+    }
+    
+    return 0;
+}
+</code></pre>
+
                 </div>
-                
-            </div>
+            </article>
+        </div>
+
         
-    </div>
-</div>
 
-        <div class="pagination-container">
-    
-    
-</div>
+        
 
+        
+
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">Aw.16982</div>
